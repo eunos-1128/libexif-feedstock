@@ -5,7 +5,7 @@ set -euo pipefail
 cp ${BUILD_PREFIX}/share/gnuconfig/config.* .
 
 autoreconf -vfi
-./configure --prefix=${PREFIX} --disable-static --enable-shared --enable-pic --disable-dependency-tracking
+./configure --prefix=${PREFIX} --disable-static --enable-shared --enable-pic --disable-nls --disable-dependency-tracking
 make -j${CPU_COUNT}
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
   make check
