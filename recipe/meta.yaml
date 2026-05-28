@@ -12,13 +12,18 @@ source:
 build:
   number: 0
   skip: True  # [win]
+  run_exports:
+    - {{ pin_subpackage(name|lower, max_pin="x.x.x") }}
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
+    - autoconf  # [unix]
+    - automake  # [unix]
     - gnuconfig  # [unix]
-    - make
+    - libtool  # [unix]
+    - make  # [unix]
 
 test:
   commands:
