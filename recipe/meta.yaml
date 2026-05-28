@@ -19,11 +19,12 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ stdlib('c') }}
-    - autoconf  # [unix]
-    - automake  # [unix]
+    - autoconf   # [unix]
+    - automake   # [unix]
+    - gettext    # [unix]
     - gnuconfig  # [unix]
-    - libtool  # [unix]
-    - make  # [unix]
+    - libtool    # [unix]
+    - make       # [unix]
 
 test:
   commands:
