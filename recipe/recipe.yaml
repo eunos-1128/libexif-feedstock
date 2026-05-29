@@ -14,12 +14,12 @@ source:
 
 build:
   number: 1
-  skip: win
 
 requirements:
   build:
     - ${{ compiler('c') }}
     - ${{ stdlib('c') }}
+    - ${{ 'autotools_clang_conda' if win }}
     - if: unix
       then:
         - autoconf
