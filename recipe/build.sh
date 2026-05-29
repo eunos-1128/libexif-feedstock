@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipefail
+set -exo pipefail
 
 if [[ "${target_platform}" != "win-"* ]]; then
   # Get an updated config.sub and config.guess
