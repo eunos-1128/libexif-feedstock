@@ -11,6 +11,8 @@ package:
 source:
   url: https://github.com/libexif/libexif/releases/download/v${{ version }}/libexif-${{ version }}.tar.xz
   sha256: 4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c
+  patches:
+    - fix-ssize.patch
 
 build:
   number: 1
