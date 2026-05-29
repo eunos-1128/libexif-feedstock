@@ -12,7 +12,11 @@ if [[ "${target_platform}" == win-* ]]; then
     patch_libtool
     # `-export-symbols` is not supported by lld-link on Windows;
     # replace with `-export-symbols-regex` to export all symbols
-    sed -i.bak 's|-export-symbols $(srcdir)/libexif.sym|-export-symbols-regex ".*"|g' libexif/Makefile
+    # Also add `-avoid-version` to generate exif.dll instead of exif-12.dll
+    sed -i.bak \
+        -e 's|-export-symbols $(srcdir)/libexif.sym|-export-symbols-regex ".*"|g' \
+        -e 's|-version-info [0-9]*:[0-9]*:[0-9]*|-avoid-version|g' \
+        libexif/Makefile
 fi
 
 make -j${CPU_COUNT}
@@ -24,6 +28,6 @@ fi
 make install
 
 if [[ "${target_platform}" == "win-"* ]]; then
-    mv "${PREFIX}"/bin/exif-*.dll "${PREFIX}/bin/exif.dll"
+    # Rename import library to follow MSVC naming convention
     mv "${PREFIX}/lib/exif.dll.lib" "${PREFIX}/lib/exif.lib"
 fi
