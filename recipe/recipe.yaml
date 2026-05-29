@@ -22,11 +22,7 @@ requirements:
     - ${{ 'autotools_clang_conda' if win }}
     - if: unix
       then:
-        - autoconf
-        - automake
-        - gettext
         - gnuconfig
-        - libtool
         - make
   run_exports:
     - ${{ pin_subpackage(name|lower, upper_bound="x.x.x") }}
