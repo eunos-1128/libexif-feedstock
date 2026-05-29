@@ -14,7 +14,8 @@ if [[ "${target_platform}" == win-* ]]; then
     # replace with `-export-symbols-regex` to export all symbols
     # Also add `-avoid-version` to generate exif.dll instead of exif-12.dll
     sed -i.bak \
-        's|-export-symbols $(srcdir)/libexif.sym|-export-symbols-regex ".*" -avoid-version|g' \
+        -e 's|-export-symbols $(srcdir)/libexif.sym|-export-symbols-regex ".*"|g' \
+        -e 's|-version-info [0-9]*:[0-9]*:[0-9]*|-avoid-version|g' \
         libexif/Makefile
 fi
 
