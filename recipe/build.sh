@@ -8,19 +8,16 @@ fi
 
 ./configure --prefix=${PREFIX} --disable-static --enable-shared --disable-nls --disable-dependency-tracking
 
-if [[ "${target_platform}" == "win-"* ]]; then
-    # `patch_libtool` only patches the libtool in the current directory;
-    # run it in each subdirectory that contains a libtool script
-    for lt in $(find . -name "libtool" ! -name "*.bak"); do
-        pushd "$(dirname "$lt")"
-        patch_libtool
-        popd
-    done
+if [[ "${target_platform}" == win-* ]]; then
+    patch_libtool
+    # `-export-symbols` is not supported by lld-link on Windows;
+    # replace with `-export-symbols-regex` to export all symbols
+    sed -i.bak 's|-export-symbols $(srcdir)/libexif.sym|-export-symbols-regex ".*"|g' libexif/Makefile
 fi
 
 make -j${CPU_COUNT}
 
-if [[ "${target_platform}" != "win-"* && "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
   make check
 fi
 
