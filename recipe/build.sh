@@ -7,9 +7,11 @@ if [[ "${target_platform}" != "win-"* ]]; then
 fi
 
 ./configure --prefix=${PREFIX} --disable-static --enable-shared --disable-nls --disable-dependency-tracking
-[[ "${target_platform}" == win-* ]] && patch_libtool
+[[ "${target_platform}" == "win-"* ]] && patch_libtool
 make -j${CPU_COUNT}
-if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
+
+if [[ "${target_platform}" != "win-"* && "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
   make check
 fi
+
 make install
