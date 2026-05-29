@@ -22,3 +22,8 @@ if [[ "${target_platform}" != "win-"* && "${CONDA_BUILD_CROSS_COMPILATION:-}" !=
 fi
 
 make install
+
+if [[ "${target_platform}" == "win-"* ]]; then
+    mv "${PREFIX}"/bin/exif-*.dll "${PREFIX}/bin/exif.dll"
+    mv "${PREFIX}/lib/exif.dll.lib" "${PREFIX}/lib/exif.lib"
+fi
