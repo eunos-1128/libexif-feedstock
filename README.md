@@ -1,23 +1,38 @@
-About libexif
-=============
+About libexif-feedstock
+=======================
 
-Home: https://libexif.github.io/
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libexif-feedstock/blob/main/LICENSE.txt)
 
-Package license: LGPL-2.1
+Home: https://libexif.github.io
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libexif-feedstock/blob/master/LICENSE.txt)
+Package license: LGPL-2.1-only
 
 Summary: A library for parsing, editing, and saving EXIF data
+
+Development: https://github.com/libexif/libexif
+
+Documentation: https://libexif.github.io/docs.html
+
+- is a library written in pure portable C.
+- reads and writes EXIF metainformation from and to image files.
+- is licensed under the GNU [LESSER GENERAL PUBLIC LICENSE Version 2.1 (LGPL)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html#TOC1).
+- runs under POSIX systems (e.g. GNU/Linux, xBSD, MacOS X, Windows, etc.).
+
+Digital cameras store a surprising amount of information inside each picture they take, in a normally invisible format known as EXIF.
+Everything from photo basics like the camera shutter speed and aperture to the GPS location and even the name of the camera owner can be hidden inside each photograph.
+libexif is a library that lets you access that data from within a computer program.
+Some simple applications called **exif** and **gexif** are also supplied alongside libexif that use it to view EXIF data from the command-line or GUI (respectively).
+
 
 Current build status
 ====================
 
 
 <table><tr>
-    <td>Travis</td>
+    <td>GitHub Actions</td>
     <td>
-      <a href="https://travis-ci.com/conda-forge/libexif-feedstock">
-        <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/libexif-feedstock/master.svg?label=macOS">
+      <a href="https://github.com/conda-forge/libexif-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/libexif-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
       </a>
     </td>
   </tr>
@@ -27,45 +42,17 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=main">
           </a>
         </summary>
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_aarch64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master&jobName=linux&configuration=linux_aarch64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_ppc64le</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master&jobName=linux&configuration=linux_ppc64le_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
               <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=master&jobName=osx&configuration=osx_arm64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -93,16 +80,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libexif` can be installed with:
+Once the `conda-forge` channel has been enabled, `libexif` can be installed with `conda`:
 
 ```
 conda install libexif
 ```
 
-It is possible to list all of the versions of `libexif` available on your platform with:
+or with `mamba`:
+
+```
+mamba install libexif
+```
+
+It is possible to list all of the versions of `libexif` available on your platform with `conda`:
 
 ```
 conda search libexif --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libexif --channel conda-forge
+```
+
+Alternatively, `mamba repoquery` may provide more information:
+
+```
+# Search all versions available on your platform:
+mamba repoquery search libexif --channel conda-forge
+
+# List packages depending on `libexif`:
+mamba repoquery whoneeds libexif --channel conda-forge
+
+# List dependencies of `libexif`:
+mamba repoquery depends libexif --channel conda-forge
 ```
 
 
@@ -120,17 +132,19 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
-packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
+[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
+[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
+[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+it is possible to build and upload installable packages to the
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
+channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -157,7 +171,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/libexif-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -170,5 +184,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@eunos-1128](https://github.com/eunos-1128/)
 * [@sebastian-luna-valero](https://github.com/sebastian-luna-valero/)
 
