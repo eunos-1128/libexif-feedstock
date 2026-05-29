@@ -3,7 +3,7 @@ About libexif-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libexif-feedstock/blob/main/LICENSE.txt)
 
-Home: https://libexif.github.io
+Home: https://libexif.github.io/
 
 Package license: LGPL-2.1-only
 
@@ -22,7 +22,6 @@ Digital cameras store a surprising amount of information inside each picture the
 Everything from photo basics like the camera shutter speed and aperture to the GPS location and even the name of the camera owner can be hidden inside each photograph.
 libexif is a library that lets you access that data from within a computer program.
 Some simple applications called **exif** and **gexif** are also supplied alongside libexif that use it to view EXIF data from the command-line or GUI (respectively).
-
 
 Current build status
 ====================
@@ -53,6 +52,13 @@ Current build status
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=main">
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_arm64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7473&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libexif-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr>

@@ -1,0 +1,60 @@
+schema_version: 1
+
+context:
+  name: libexif
+  version: "0.6.26"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/libexif/libexif/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 32e591455339504b7d02f3e9b0a48f16f5455462a9059a7f47639980e82e4bc1
+
+build:
+  number: 1
+  skip: win
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - if: unix
+      then:
+        - autoconf
+        - automake
+        - gettext
+        - gnuconfig
+        - libtool
+        - make
+  run_exports:
+    - ${{ pin_subpackage(name|lower, upper_bound="x.x.x") }}
+
+tests:
+  - package_contents:
+      lib:
+        - exif
+
+about:
+  homepage: https://libexif.github.io
+  repository: https://github.com/libexif/libexif
+  documentation: https://libexif.github.io/docs.html
+  license: LGPL-2.1-only
+  license_file: COPYING
+  summary: A library for parsing, editing, and saving EXIF data
+  description: |
+    - is a library written in pure portable C.
+    - reads and writes EXIF metainformation from and to image files.
+    - is licensed under the GNU [LESSER GENERAL PUBLIC LICENSE Version 2.1 (LGPL)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html#TOC1).
+    - runs under POSIX systems (e.g. GNU/Linux, xBSD, MacOS X, Windows, etc.).
+
+    Digital cameras store a surprising amount of information inside each picture they take, in a normally invisible format known as EXIF.
+    Everything from photo basics like the camera shutter speed and aperture to the GPS location and even the name of the camera owner can be hidden inside each photograph.
+    libexif is a library that lets you access that data from within a computer program.
+    Some simple applications called **exif** and **gexif** are also supplied alongside libexif that use it to view EXIF data from the command-line or GUI (respectively).
+
+extra:
+  recipe-maintainers:
+    - sebastian-luna-valero
+    - eunos-1128
