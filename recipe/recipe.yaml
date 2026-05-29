@@ -9,8 +9,8 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/libexif/libexif/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 32e591455339504b7d02f3e9b0a48f16f5455462a9059a7f47639980e82e4bc1
+  url: https://github.com/libexif/libexif/releases/download/v${{ version }}/libexif-${{ version }}.tar.xz
+  sha256: 4a055ed6575e61ca46c3172be3c753cc16c9becd0f99ec71d58dd0e471476c0c
 
 build:
   number: 1
